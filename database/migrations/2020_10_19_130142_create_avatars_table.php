@@ -14,10 +14,10 @@ class CreateAvatarsTable extends Migration
     public function up()
     {
         Schema::create('avatars', function (Blueprint $table) {
-            $table->id();
             $table->string('telefono');
             $table->string('avatar');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->primary();
+            //ho eliminato id avatar perché inutile, rendo id di user chiave primaria
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             // in questo modo se modifico o cancello un elemento anche gli elementi collegati si adatteranno 
         });
